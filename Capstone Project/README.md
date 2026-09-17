@@ -124,4 +124,90 @@ The framework follows a layered automation architecture:
 ├───────────────────────────────┤
 │ Chrome                        │
 │ Firefox                       │
-└───────────────────────────────┘      
+└───────────────────────────────┘
+```
+## 📁 Project Structure
+
+```
+ecommerce-selenium-framework/
+│
+├── 📂 config/
+│   └── config.ini
+│       └── Base URL, browser settings, credentials & timeouts
+│
+├── 📂 pages/
+│   ├── base_page.py
+│   │   └── Common reusable methods
+│   │
+│   ├── home_page.py
+│   │   └── Search functionality
+│   │
+│   ├── login_page.py
+│   │   └── Login / Logout actions
+│   │
+│   ├── search_results_page.py
+│   │   └── Search result interactions
+│   │
+│   ├── product_page.py
+│   │   └── Product details & Add to Cart
+│   │
+│   └── cart_page.py
+│       └── Cart verification & cleanup
+│
+├── 📂 tests/
+│   ├── test_01_master_e2e.py
+│   │   └── Main E2E automation journey
+│   │
+│   ├── test_02_screenshot_demo.py
+│   │   └── Screenshot functionality demonstration
+│   │
+│   └── unittest_login.py
+│       └── Negative login testing
+│
+├── 📂 utilities/
+│   ├── read_config.py
+│   │   └── Reads config.ini values
+│   │
+│   ├── config_reader.py
+│   │   └── Configuration utilities
+│   │
+│   ├── custom_logger.py
+│   │   └── Generates timestamped log files
+│   │
+│   └── read_data.py
+│       └── Reads CSV test data
+│
+├── 📂 test_data/
+│   ├── login_data.csv
+│   │   └── Invalid credentials
+│   │
+│   └── search_data.csv
+│       └── Product search data
+│
+├── 📂 screenshots/
+│   └── Automatically captured screenshots
+│
+├── 📂 reports/
+│   └── Generated pytest-html reports
+│
+├── 📂 logs/
+│   └── Runtime log files
+│
+├── conftest.py
+│   └── Pytest fixtures and failure screenshot hook
+│
+├── pytest.ini
+│   └── Pytest configuration
+│
+├── requirements.txt
+│   └── Python dependencies
+│
+└── run_demo.bat
+    └── One-click Windows demo runner
+```
+<p align="center">
+Made by Yashraj Sharma
+</p>
+<p align="center">
+  Give a ⭐ if you find this repository useful
+</p>
