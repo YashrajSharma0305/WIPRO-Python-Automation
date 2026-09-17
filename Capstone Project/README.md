@@ -1,112 +1,127 @@
-🛒 E-Commerce Web Automation Framework
-A production-style Selenium + Python + Pytest automation framework built on the Page Object Model (POM) design pattern. This project automates an end-to-end E-Commerce testing journey on TutorialsNinja Demo — covering login, product search, cart management, and logout — with data-driven testing, automatic screenshot capture, and a self-contained HTML report.
+# 🛒 E-Commerce Web Automation Framework
+
+> 🚀 **Production-Style Selenium + Python + Pytest Automation Framework**
+
+<p align="center">
+
+![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-4.48-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-Test_Framework-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![POM](https://img.shields.io/badge/Design-Page%20Object%20Model-orange?style=for-the-badge)
+![HTML Report](https://img.shields.io/badge/Reports-pytest--html-red?style=for-the-badge)
+
+</p>
+
 ---
-📽️ Demo Video
-> Add your video link here — e.g., `[▶ Watch Demo on Google Drive](your-link-here)`
+
+## 📌 Overview
+
+This project is a **production-style E-Commerce Web Automation Framework** built using **Selenium + Python + Pytest**, following the **Page Object Model (POM)** design pattern.
+
+The framework automates a complete E-Commerce testing journey on the **TutorialsNinja Demo Store**, covering:
+
+- 🔐 Login & authentication
+- 🔎 Product search
+- 📦 Product selection
+- 🛒 Add-to-cart operations
+- ✅ Cart verification
+- 🧹 Cart cleanup
+- 🚪 Logout
+- 📸 Automatic screenshot capture on test failure
+- 📊 Self-contained HTML test reporting
+- 📁 Data-driven testing using CSV files
+- 📝 Timestamped execution logs
+
+The framework is designed with **maintainability, reusability, scalability, and clean test architecture** in mind.
+
 ---
-🧰 Tech Stack
-Tool	Purpose
-Python 3.x	Core programming language
-Selenium 4	Browser automation
-Pytest	Test runner and assertions
-pytest-html	Self-contained HTML test report
-WebDriver Manager	Auto-manages ChromeDriver / GeckoDriver
-Page Object Model	Design pattern for maintainability
-CSV	Data-driven test inputs
-Python `logging`	Runtime log generation
+
+## 🎯 Project Objective
+
+The primary objective of this project is to demonstrate how a real-world Selenium automation framework can be structured using reusable components instead of placing all browser interactions directly inside test scripts.
+
+The framework separates:
+
+- Test logic
+- Page interactions
+- Configuration
+- Test data
+- Utility functions
+- Logging
+- Reporting
+
+This separation makes the automation suite easier to maintain, debug, and extend.
+
 ---
-📁 Project Structure
-```
-ecommerce-selenium-framework/
-│
-├── config/
-│   └── config.ini            # Base URL, browser settings, credentials, timeouts
-│
-├── pages/                    # Page Object classes (one per web page)
-│   ├── base_page.py          # Common reusable methods (click, type, screenshot)
-│   ├── home_page.py          # Search functionality
-│   ├── login_page.py         # Login / Logout actions
-│   ├── search_results_page.py
-│   ├── product_page.py       # Add to cart, success message
-│   └── cart_page.py          # Cart verification and cleanup
-│
-├── tests/                    # Test scripts
-│   ├── test_01_master_e2e.py # Main E2E journey (Pytest)
-│   ├── test_02_screenshot_demo.py
-│   └── unittest_login.py     # Negative login (unittest)
-│
-├── utilities/                # Helper modules
-│   ├── read_config.py        # Reads config.ini values
-│   ├── config_reader.py
-│   ├── custom_logger.py      # Generates timestamped log files
-│   └── read_data.py          # Reads CSV test data files
-│
-├── test_data/                # Data-driven test inputs
-│   ├── login_data.csv        # Invalid credentials for negative login test
-│   └── search_data.csv       # Product names for search test
-│
-├── screenshots/              # Auto-captured screenshots (manual + on-failure)
-├── reports/                  # Generated pytest-html report
-├── logs/                     # Runtime log files
-│
-├── conftest.py               # Pytest fixtures (WebDriver setup, teardown, failure screenshot)
-├── pytest.ini                # Pytest configuration
-├── requirements.txt          # Python dependencies
-└── run_demo.bat              # One-click demo runner (Windows)
-```
+
+## 📽️ Demo Video
+
+### ▶️ Watch the Automation Demo
+
+[![Watch Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red?style=for-the-badge)](https://drive.google.com/file/d/1OMIMN252cNt-MayT_2Ek_a7lBGshQLHm/view?usp=drive_link)
+
+🎥 **[Click here to watch the full automation demo on Google Drive](https://drive.google.com/file/d/1OMIMN252cNt-MayT_2Ek_a7lBGshQLHm/view?usp=drive_link)**
+
+The demo showcases the automated E-Commerce workflow, including login, product search, product selection, cart operations, and logout.
+
 ---
-✅ Test Cases
-#	Test Name	Type	Description
-1	`test_01_invalid_login`	Negative / Data-Driven	Attempts login with fake credentials from `login_data.csv`, asserts warning message
-2	`test_02_valid_login`	Positive	Logs in with valid credentials from `config.ini`, verifies "My Account" page
-3	`test_03_search_and_view_product`	Data-Driven	Searches for multiple products from `search_data.csv`, navigates to MacBook details
-4	`test_04_add_to_cart`	Functional	Adds MacBook to cart, waits for success banner, verifies item appears in cart
-5	`test_05_clear_cart_and_logout`	Cleanup	Removes all cart items, then logs out to restore account state
-6	Screenshot on Failure	Automated Hook	Embeds a base64 screenshot into the HTML report whenever any test fails
+
+## 🧰 Tech Stack
+
+| Technology | Purpose |
+|:---|:---|
+| 🐍 **Python 3.10.0** | Core programming language |
+| 🌐 **Selenium 4.48.0** | Browser automation |
+| 🧪 **Pytest** | Test execution and assertions |
+| 📊 **pytest-html** | Self-contained HTML test reporting |
+| 🚗 **WebDriver Manager** | Automatic browser driver management |
+| 🧱 **Page Object Model** | Maintainable automation architecture |
+| 📄 **CSV** | Data-driven test inputs |
+| 📝 **Python Logging** | Runtime execution logs |
+| 🧩 **Unittest** | Negative login test implementation |
+
 ---
-🚀 How to Run
-1. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-2. Run all tests (Chrome by default)
-```bash
-pytest
-```
-3. Run on Firefox
-```bash
-pytest --browser=firefox
-```
-4. One-click demo (Windows)
-```bat
-run_demo.bat
-```
-This cleans old logs/screenshots/reports, runs the full Pytest suite, then runs the Unittest suite.
-5. View the HTML Report
-After running, open `reports/report.html` in any browser. The report is fully self-contained with embedded screenshots on failures.
----
-🔑 Key Features
-Page Object Model — Each web page is a separate Python class. Tests never talk to the browser directly, only through page objects.
-Data-Driven Testing — Login credentials and product search terms are read from CSV files, keeping test logic and test data separate.
-Automatic Screenshot on Failure — A pytest hook (`conftest.py`) captures and embeds a screenshot directly into the HTML report whenever a test fails.
-Session-Scoped Driver — One browser window is reused across all tests in sequence, just like a real user would navigate.
-Cross-Browser Support — Switch between Chrome and Firefox using the `--browser` flag.
-Centralized Configuration — All URLs, credentials, and timeouts live in `config/config.ini`. No hardcoded values in test code.
-Timestamped Logging — Every run generates a new log file under `logs/` with step-by-step info messages.
----
-📦 Dependencies
-```
-selenium
-pytest
-pytest-html
-pytest-xdist
-webdriver-manager
-openpyxl
-```
-Install all at once:
-```bash
-pip install -r requirements.txt
-```
----
-⚠️ Note
-`config/config.ini` contains login credentials used for testing on the demo site. Do not replace these with real personal account credentials before pushing to a public repository.
+
+## 🏗️ Framework Architecture
+
+The framework follows a layered automation architecture:
+
+```text
+                         AUTOMATION FRAMEWORK
+                                  │
+                ┌─────────────────┴─────────────────┐
+                │                                   │
+           TEST LAYER                          DATA LAYER
+                │                                   │
+        ┌───────┴────────┐                  ┌───────┴────────┐
+        │                │                  │                │
+      Pytest          Unittest          CSV Data        config.ini
+        │
+        ▼
+┌───────────────────────────────┐
+│       PAGE OBJECT LAYER       │
+├───────────────────────────────┤
+│ Base Page                     │
+│ Home Page                     │
+│ Login Page                    │
+│ Search Results Page           │
+│ Product Page                  │
+│ Cart Page                     │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│        UTILITY LAYER          │
+├───────────────────────────────┤
+│ Configuration Reader          │
+│ Data Reader                   │
+│ Custom Logger                 │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│       SELENIUM WEBDRIVER      │
+├───────────────────────────────┤
+│ Chrome                        │
+│ Firefox                       │
+└───────────────────────────────┘      
