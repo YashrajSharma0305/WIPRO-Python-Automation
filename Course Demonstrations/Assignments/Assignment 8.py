@@ -28,10 +28,6 @@ from selenium.common.exceptions import (
 )
 
 
-# =========================================================
-# 1. LOAD CSV DATA
-# =========================================================
-
 BASE_DIR = Path(__file__).resolve().parent
 
 CSV_FILE = BASE_DIR / "data" / "login_test_data.csv"
@@ -39,13 +35,11 @@ CSV_FILE = BASE_DIR / "data" / "login_test_data.csv"
 print("CSV file location:")
 print(CSV_FILE)
 
-# Check whether CSV exists
 if not CSV_FILE.exists():
     raise FileNotFoundError(
         f"\nCSV file not found:\n{CSV_FILE}"
     )
 
-# Read CSV
 test_data = pd.read_csv(
     CSV_FILE,
     keep_default_na=False
@@ -57,11 +51,6 @@ print("Test Data:")
 print("-" * 70)
 print(test_data)
 print("-" * 70)
-
-
-# =========================================================
-# 2. VALIDATE CSV COLUMNS
-# =========================================================
 
 required_columns = {
     "username",
@@ -76,21 +65,11 @@ if missing_columns:
         f"Missing columns in CSV: {missing_columns}"
     )
 
-
-# =========================================================
-# 3. START CHROME
-# =========================================================
-
 driver = webdriver.Chrome()
 
 wait = WebDriverWait(driver, 10)
 
 results_summary = []
-
-
-# =========================================================
-# 4. DATA-DRIVEN TEST EXECUTION
-# =========================================================
 
 try:
 
@@ -116,28 +95,14 @@ try:
         status = "FAILED"
 
         try:
-
-            # -------------------------------------------------
-            # Open SauceDemo login page
-            # -------------------------------------------------
-
             driver.get(
                 "https://www.saucedemo.com/"
             )
-
-            # -------------------------------------------------
-            # Locate username field
-            # -------------------------------------------------
-
             username_field = wait.until(
                 EC.visibility_of_element_located(
                     (By.ID, "user-name")
                 )
             )
-
-            # -------------------------------------------------
-            # Locate password field
-            # -------------------------------------------------
 
             password_field = wait.until(
                 EC.visibility_of_element_located(
@@ -145,27 +110,15 @@ try:
                 )
             )
 
-            # -------------------------------------------------
-            # Enter username
-            # -------------------------------------------------
-
             username_field.clear()
 
             if username:
                 username_field.send_keys(username)
 
-            # -------------------------------------------------
-            # Enter password
-            # -------------------------------------------------
-
             password_field.clear()
 
             if password:
                 password_field.send_keys(password)
-
-            # -------------------------------------------------
-            # Locate Login button
-            # -------------------------------------------------
 
             login_button = wait.until(
                 EC.presence_of_element_located(
@@ -173,7 +126,6 @@ try:
                 )
             )
 
-            # Scroll button into view
             driver.execute_script(
                 "arguments[0].scrollIntoView({"
                 "block: 'center'"
@@ -181,36 +133,22 @@ try:
                 login_button
             )
 
-            # Wait until clickable
             wait.until(
                 EC.element_to_be_clickable(
                     (By.ID, "login-button")
                 )
             )
 
-            # -------------------------------------------------
-            # Click Login
-            # -------------------------------------------------
-
             try:
 
                 login_button.click()
 
             except ElementClickInterceptedException:
-
-                # Fallback if another page element intercepts click
                 driver.execute_script(
                     "arguments[0].click();",
                     login_button
                 )
-
-            # -------------------------------------------------
-            # Determine actual result
-            # -------------------------------------------------
-
             try:
-
-                # Successful login redirects to inventory.html
                 wait.until(
                     EC.url_contains("inventory.html")
                 )
@@ -221,10 +159,6 @@ try:
                 print("Login successful.")
 
             except TimeoutException:
-
-                # Login did not redirect.
-                # Check whether SauceDemo displayed an error.
-
                 try:
 
                     error_message = wait.until(
@@ -257,22 +191,18 @@ try:
                         "error message was detected."
                     )
 
-            # -------------------------------------------------
-            # Compare actual vs expected result
-            # -------------------------------------------------
-
             if actual_result == expected_result:
 
                 status = "PASSED"
 
-                print("✅ TEST PASSED")
+                print("TEST PASSED")
 
             else:
 
                 status = "FAILED"
 
                 print(
-                    "❌ TEST FAILED "
+                    "TEST FAILED "
                     f"(Expected: {expected_result}, "
                     f"Actual: {actual_result})"
                 )
@@ -282,13 +212,9 @@ try:
             actual_result = "ERROR"
             status = "FAILED"
 
-            print("\n❌ ERROR DURING TEST CASE")
+            print("\nERROR DURING TEST CASE")
             print(type(e).__name__)
             print(e)
-
-        # -----------------------------------------------------
-        # Store result
-        # -----------------------------------------------------
 
         results_summary.append({
             "Test Case": test_number,
@@ -297,11 +223,6 @@ try:
             "Actual": actual_result,
             "Status": status
         })
-
-
-# =========================================================
-# 5. FINAL SUMMARY
-# =========================================================
 
 finally:
 
