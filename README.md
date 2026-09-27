@@ -32,7 +32,7 @@ It contains three things:
   Framework
 
 ---
-
+```
 ## 📁 Repository Structure
 
 WIPRO-Python-Automation/
@@ -53,9 +53,7 @@ WIPRO-Python-Automation/
 │
 └── README.md
 
-
----
-
+```
 ## 🎓 Learning Path & Certifications
 
 | # | Course | Platform / Provider | Completed |
