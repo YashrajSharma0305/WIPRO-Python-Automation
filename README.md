@@ -1,4 +1,4 @@
-# 🐍 WIPRO Python Automation
+# WIPRO Python Automation
 
 ### Selenium • PyTest • Behave BDD • Robot Framework • Page Object Model
 
@@ -18,7 +18,7 @@
 ## 📌 Overview
 
 This is my dedicated repository for **WIPRO's Pre-Placement Python Automation
-Training Program (CoE)**, tracking my complete journey from Selenium
+Training Program**, tracking my complete journey from Selenium
 fundamentals to a production-style, multi-framework test automation portfolio.
 
 It contains three things:
