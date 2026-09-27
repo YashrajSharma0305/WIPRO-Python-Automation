@@ -1,9 +1,25 @@
+# Python
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.venv/
-venv/
-env/
+
+# Behave
+.behave/
+
+# Robot Framework
+output.xml
+log.html
+report.html
+*.html
+
+# Selenium
+*.png
+*.jpg
+*.jpeg
+
+# IDE
 .vscode/
+.idea/
+
+# OS
 .DS_Store
 Thumbs.db
